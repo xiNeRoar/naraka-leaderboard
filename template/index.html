@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img src="https://cdn2.steamgriddb.com/file/sgdb-cdn/logo/2c31ee4b5fa75ec6690dfb4ea3e5e652.png" alt="Logo" class="logo">
+    <div class="container">
+        <div class="tournament-rules">
+            <hr class="section-divider">
+            <h2>比賽規則</h2>
+            <ul id="rules-list">
+                <!-- The content here will be dynamically updated by the update-rules function -->
+            </ul>
+        </div>
+        <div class="leaderboard">
+            <hr class="section-divider">
+            <h2>積分榜</h2>
+            <div id="players-list">
+                <!-- The content here will be dynamically updated by the add player form function -->
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateRules(newRules) {
+            const rulesList = document.getElementById('rules-list');
+            rulesList.innerHTML = ''; // Clear the current rules
+            newRules.forEach(rule => {
+                const li = document.createElement('li');
+                li.textContent = rule;
+                rulesList.appendChild(li);
+            });
+        }
+
+        function addPlayerForm(player) {
+            const playersList = document.getElementById('players-list');
+            const playerDiv = document.createElement('div');
+            playerDiv.classList.add('player');
+
+            const rankSpan = document.createElement('span');
+            rankSpan.classList.add('rank');
+            rankSpan.textContent = player.rank;
+            playerDiv.appendChild(rankSpan);
+
+            const nameSpan = document.createElement('span');
+            nameSpan.classList.add('name');
+            nameSpan.textContent = player.name;
+            playerDiv.appendChild(nameSpan);
+
+            const scoreSpan = document.createElement('span');
+            scoreSpan.classList.add('score');
+            scoreSpan.textContent = player.score;
+            playerDiv.appendChild(scoreSpan);
+
+            playersList.appendChild(playerDiv);
+        }
+    </script>
+</body>
+</html>
